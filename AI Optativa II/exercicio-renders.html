@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inteligência Artificial Aplicada à Arquitetura - Exercício de Renders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --outer:#ddd3bd;
+  --paper:#fdfbf6;
+  --ink:#2a2926;
+  --muted:#8a867a;
+  --line:#d8d0ba;
+  --prompt-bg:#f5f1e6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--outer);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.sheet{max-width:780px;margin:32px auto;background:var(--paper);box-shadow:0 20px 60px rgba(0,0,0,.18);}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.18em;text-transform:uppercase;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:20;background:var(--paper)}
+.top .right{display:flex;align-items:center;gap:12px}
+.lang button{border:1px solid var(--ink);background:transparent;border-radius:16px;padding:5px 14px;font-size:11px;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.1em}
+.lang button.on{background:#2a2926;color:#fff}
+.eyebrow{text-align:center;padding:34px 20px 26px;border-bottom:1px solid var(--line);line-height:1.2}
+.t-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:46px;font-weight:300;letter-spacing:-.01em;line-height:1.05}
+.t-title em{font-style:italic;font-weight:400;color:#5C5B40}
+.t-rule{width:44px;height:1px;background:var(--line);margin:14px auto 0}
+.brand{display:flex;flex-direction:column;line-height:1.3}
+.brand-sub{font-size:9px;letter-spacing:.22em;color:var(--muted)}
+.brand-main{font-size:13px;letter-spacing:.18em;font-weight:500}
+.hero{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);}
+.hero-img{margin:0;min-height:320px}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(15%) sepia(8%);}
+.hero-txt{display:flex;flex-direction:column;justify-content:center;padding:36px 32px;font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;line-height:1.15;font-weight:300}
+.hero-txt em{font-style:italic}
+.hero-txt p{font-size:13px;font-family:'Inter',sans-serif;line-height:1.7;color:#5a574e;margin-top:16px}
+.section{padding:38px 42px;border-bottom:1px solid var(--line);}
+.kicker{text-align:center;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:34px;text-align:center;margin:6px 0 8px;line-height:1.1}
+h2 em{font-style:italic;font-weight:300}
+.sub{text-align:center;max-width:560px;margin:0 auto 22px;font-size:13px;line-height:1.7;color:#5d5a52}
+.body-two{display:grid;grid-template-columns:1fr 140px;gap:22px;align-items:start;font-size:12.5px;line-height:1.8;color:#4e4c46}
+.small-img{margin:0}
+.small-img img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border:1px solid var(--line)}
+figcaption{font-size:10px;font-style:italic;color:var(--muted);margin-top:6px;line-height:1.4}
+.prompt{border:1px solid var(--line);background:var(--prompt-bg);padding:16px 18px;font-size:12.5px;line-height:1.7;margin:18px 0}
+.prompt .plabel{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.prompt blockquote{margin:0;font-style:normal;font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;line-height:1.5}
+.figure{margin:18px 0}
+.figure img{width:100%;display:block;border:1px solid var(--line)}
+.figure .cap{display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.figure .cap span:last-child{text-transform:none;letter-spacing:0;font-style:italic;font-size:11px}
+.tool{margin-top:18px;text-align:right;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tool span{border-top:1px solid var(--line);padding-top:6px}
+.refs{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+.refs h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;font-size:20px;margin:0 0 10px}
+.ref-grid{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:center;font-size:12px;line-height:1.6;color:#5d5a52}
+.ref-grid img{width:100%;display:block;border:1px solid var(--line)}
+.closing{display:grid;grid-template-columns:180px 1fr;}
+.closing-img{margin:0}
+.closing-img img{width:100%;height:100%;object-fit:cover;display:block}
+.closing-txt{padding:32px;font-family:'Cormorant Garamond',Georgia,serif}
+.closing-txt h3{font-size:28px;font-weight:400;margin:0 0 12px}
+.closing-txt p{font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.8;color:#5d5a52}
+footer{padding:18px;text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#a09c90;border-top:1px solid var(--line)}
+footer .names{text-transform:none;letter-spacing:.02em;font-style:italic;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;color:#8a867a;margin-top:6px}
+nav.toc{display:flex;justify-content:center;gap:18px;padding:12px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+nav.toc a{color:var(--ink);text-decoration:none}
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr}
+  .body-two{grid-template-columns:1fr}
+  .closing{grid-template-columns:1fr}
+  .section{padding:28px 22px}
+  .hero-txt{font-size:28px}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="top">
+    <span class="brand"><span class="brand-sub" data-pt="Inteligência Artificial Aplicada à Arquitetura" data-en="Applied Artificial Intelligence for Architecture">Inteligência Artificial Aplicada à Arquitetura</span></span>
+    <span class="right"><span class="lang"><button id="bPT" class="on" onclick="setL('pt')">PT</button><button id="bEN" onclick="setL('en')">EN</button></span></span>
+  </div>
+  <div class="eyebrow">
+    <div class="t-title" data-pt="Exercício <em>de Renders</em>" data-en="Render <em>Exercise</em>">Exercício <em>de Renders</em></div>
+    <div class="t-rule"></div>
+  </div>
+
+  <div class="hero">
+    <figure class="hero-img" style="margin:0">
+      <img src="render made from render/original image.jpeg" alt="Render interior Natal">
+    </figure>
+    <div class="hero-txt">
+      <span data-pt="Render com <em>ferramentas de IA</em>" data-en="Render using <em>AI tools</em>">Render com <em>ferramentas de IA</em></span>
+      <p data-pt="De uma referência inicial ao render. A informação seguinte documenta os passos que seguimos, o que pedimos à máquina e o que obtivemos." data-en="From a starting reference into a render. The following information documents the steps we took, what we asked the machine, and what came back.">De uma referência inicial ao render. A informação seguinte documenta os passos que seguimos, o que pedimos à máquina e o que obtivemos.</p>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <a href="#ex1" data-pt="01 — Esquisso" data-en="01 — Sketch">01 — Esquisso</a>
+    <a href="#ex2" data-pt="02 — Render" data-en="02 — Render">02 — Render</a>
+    <a href="#ex3" data-pt="03 — Modelo" data-en="03 — Model">03 — Modelo</a>
+  </nav>
+
+  <!-- EXERCISE 1 -->
+  <div class="section" id="ex1">
+    <div class="kicker" data-pt="Exercício 01 — Do Esquisso ao Render" data-en="Exercise 01 — Sketch to Render">Exercício 01 — Do Esquisso ao Render</div>
+    <h2 data-pt="A partir de <em>um esquisso à mão</em>" data-en="Starting from <em>a hand sketch</em>">A partir de <em>um esquisso à mão</em></h2>
+    <p class="sub" data-pt="Pegámos num esquisso de um espaço interior e colocámo-lo no ChatGPT para criar um render arquitetónico." data-en="We took a sketch of an interior space and placed it into ChatGPT to create an architectural render.">Pegámos num esquisso de um espaço interior e colocámo-lo no ChatGPT para criar um render arquitetónico.</p>
+
+    <div style="font-size:12.5px;line-height:1.8;color:#4e4c46">
+      <span data-pt="Este primeiro teste é sobre tradução: manter a intenção espacial de um esquisso solto enquanto a IA propõe luz, material e atmosfera. Não redesenhámos, escrevemos um prompt para melhorar o desenho inicial e fomos pedindo à ferramenta para alterar pequenos pormenores para melhorar o resultado final." data-en="This first test is about translation: keeping spatial intention from a loose sketch while letting AI propose light, material and atmosphere. We did not redraw; we wrote a prompt to enhance the initial drawing and kept asking the tool to alter small details to improve the final result.">Este primeiro teste é sobre tradução: manter a intenção espacial de um esquisso solto enquanto a IA propõe luz, material e atmosfera. Não redesenhámos, escrevemos um prompt para melhorar o desenho inicial e fomos pedindo à ferramenta para alterar pequenos pormenores para melhorar o resultado final.</span>
+    </div>
+
+    <div class="figure">
+      <img src="render made from sketch/original sketch.jpeg" alt="Imagem inicial - esquisso interior">
+      <div class="cap"><span data-pt="Imagem inicial — esquisso interior" data-en="Starting image — interior sketch">Imagem inicial — esquisso interior</span></div>
+    </div>
+
+    <div class="prompt">
+      <div class="plabel" data-pt="Prompt utilizado" data-en="Prompt used">Prompt utilizado</div>
+      <blockquote>Transforma este sketch de interior num render de elevada qualidade. Mantém rigorosamente todas as proporções, a arquitetura, a geometria, os elementos construtivos, os móveis, a posição dos objetos, os vãos, a estrutura, a perspetiva, as sombras existentes e o enquadramento original, sem redesenhar, eliminar ou deslocar qualquer elemento. Altera exclusivamente os materiais, as texturas e a iluminação, conforme especificado: madeira de eucalipto ao pavimento interior; madeira de nogueira no móvel da sala; sofá e a cadeira com tecido de aspeto natural e textura visível; e mantém as paredes brancas, com uma textura rugosa subtil e realista. Cria uma iluminação quente de 3000K, com uma atmosfera acolhedora, iluminação global natural, sombras suaves e coerentes e reflexos fisicamente credíveis. No terraço, preserva a configuração, as proporções, a vegetação, o mobiliário e todos os elementos existentes, aplicando apenas um acabamento de cimento queimado ao pavimento exterior, com textura e tonalidade realistas. Acrescenta algumas pessoas, de forma natural e proporcional à escala do espaço, a conviverem descontraidamente num ambiente de inverno, sem ocultar elementos arquitetónicos nem interferir com a disposição existente. Cria uma atmosfera de dezembro, com um exterior frio, neve subtil e um nevoeiro muito ligeiro, mantendo a visibilidade. Na parte superior da parede com pé-direito duplo, por cima do vão, acrescenta uma pintura de Claude Monet, respeitando rigorosamente a posição, a escala e a geometria da parede, sem interferir com a laje ou a viga. Põe uma decoração natalícia discreta com uma árvore de Natal e luzes quentes. O resultado final deve apresentar materiais de elevada qualidade, texturas detalhadas, iluminação realista, sombras naturais e uma atmosfera acolhedora, preservando integralmente a identidade e a intenção arquitetónica do projeto. REGRA FUNDAMENTAL: não alteres absolutamente nada que não tenha sido explicitamente pedido. Não modifiques as proporções, a geometria, a arquitetura, os móveis, a posição dos objetos, os vãos, a estrutura, a perspetiva, o enquadramento ou a vista original. Não inventes, elimines ou redesenhes elementos existentes. Limita-te a aplicar os materiais, a iluminação, as pessoas e os elementos decorativos especificados, mantendo o sketch original como referência rigorosa e inalterável.</blockquote>
+    </div>
+
+    <div class="figure">
+      <img src="render made from sketch/final render.jpeg" alt="Render final">
+      <div class="cap"><span data-pt="Render final — a partir do esquisso" data-en="Final render — from sketch">Render final — a partir do esquisso</span></div>
+    </div>
+
+    <div class="refs">
+      <h3 data-pt="Referências" data-en="References">Referências</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:340px">
+        <img src="render made from sketch/painting refrence 1.jpg" alt="Referência de pintura 1" style="width:100%;height:140px;object-fit:cover;display:block;border:1px solid var(--line)">
+        <img src="render made from sketch/painting refrence 2.jpeg" alt="Referência de pintura 2" style="width:100%;height:140px;object-fit:cover;display:block;border:1px solid var(--line)">
+      </div>
+      <p style="font-size:12px;color:#5d5a52;line-height:1.7;margin-top:10px" data-pt="As duas imagens de referência foram usadas para orientar a ferramenta na pintura localizada na parede do render." data-en="The two reference images were used to guide the tool for the painting located on the wall in the render.">As duas imagens de referência foram usadas para orientar a ferramenta na pintura localizada na parede do render.</p>
+    </div>
+    <div class="tool"><span data-pt="feito com ChatGPT" data-en="made with ChatGPT">feito com ChatGPT</span></div>
+  </div>
+
+  <!-- EXERCISE 2 -->
+  <div class="section" id="ex2">
+    <div class="kicker" data-pt="Exercício 02 — De Render para Render" data-en="Exercise 02 — Render from Render">Exercício 02 — De Render para Render</div>
+    <h2 data-pt="Transformar <em>um render</em> no nosso" data-en="Turning <em>a render</em> into our own">Transformar <em>um render</em> no nosso</h2>
+    <p class="sub" data-pt="Foi-nos pedido que pegássemos num render existente e o transformássemos num render personalizado — mesmo espaço, novo pavimento, estação, uso e ambiente." data-en="We were asked to take an existing render and alter it into a personalized render — same space, new floor, season, use and mood.">Foi-nos pedido que pegássemos num render existente e o transformássemos num render personalizado — mesmo espaço, novo pavimento, estação, uso e ambiente.</p>
+
+    <div class="figure">
+      <img src="render made from render/final render.jpeg" alt="Imagem inicial - render original">
+      <div class="cap"><span data-pt="Imagem inicial — render original" data-en="Starting image — original render">Imagem inicial — render original</span></div>
+    </div>
+
+    <div class="prompt">
+      <div class="plabel" data-pt="Prompt utilizado — Gemini" data-en="Prompt used — Gemini">Prompt utilizado — Gemini</div>
+      <blockquote>Gemini, muda o chão existente para um mosaico tal como o da imagem que eu mandei. Mantem tudo o resto, não alteres nada que eu não pedi; Vamos colocar mais pessoas neste espaço. E vamos colocar o ambiente como se fosse dezembro e esta a nevar la fora. Coloca decorações natalícias e abre a porta lateral direita que vai dar a um auditório onde está um banquete e mesas para as pessoas conviverem. Tem em mente que este espaço foi projetado para ser utilizado pelos estudantes e velhinhos da cidade; Coloca de noite e o auditorio. Altera a vista da janela para como se fosse um prédio desta praça. Muda também a placa do SanatoriUM para estar escrito em inglês. Não alteres nada que eu não pedi.</blockquote>
+    </div>
+
+    <div class="figure">
+      <img src="render made from render/original image.jpeg" alt="Render final personalizado">
+      <div class="cap"><span data-pt="Render final — personalizado" data-en="Final render — personalized">Render final — personalizado</span></div>
+    </div>
+
+    <div class="refs">
+      <h3 data-pt="Referências" data-en="References">Referências</h3>
+      <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center">
+        <img src="render made from render/refrence image for flooring.jpeg" alt="Referência de pavimento" style="width:140px;display:block;border:1px solid var(--line)">
+        <p style="font-size:12px;color:#5d5a52;line-height:1.7;margin:0" data-pt="Referência de pavimento — imagem usada para orientar a ferramenta no pavimento do render." data-en="Flooring reference — image used to guide the tool for the flooring in the render.">Referência de pavimento — imagem usada para orientar a ferramenta no pavimento do render.</p>
+      </div>
+    </div>
+    <div class="tool"><span data-pt="feito com Gemini" data-en="made with Gemini">feito com Gemini</span></div>
+  </div>
+
+  <!-- EXERCISE 3 -->
+  <div class="section" id="ex3">
+    <div class="kicker" data-pt="Exercício 03 — Do Modelo 3D ao Render" data-en="Exercise 03 — 3D Model to Render">Exercício 03 — Do Modelo 3D ao Render</div>
+    <h2 data-pt="De <em>volumes SketchUp</em> à cidade" data-en="From <em>SketchUp volumes</em> to city">De <em>volumes SketchUp</em> à cidade</h2>
+    <p class="sub" data-pt="Construímos um modelo de volumes em SketchUp e colocámo-lo no ChatGPT para gerar uma cidade de inverno completa — parque, lago, ruas e figuras à escala." data-en="We built a 3D massing model in SketchUp, then placed it into ChatGPT to generate a full winter cityscape — park, lake, streets and scale figures.">Construímos um modelo de volumes em SketchUp e colocámo-lo no ChatGPT para gerar uma cidade de inverno completa — parque, lago, ruas e figuras à escala.</p>
+
+    <div class="figure">
+      <img src="render made from sketchup model/base model, original image.png" alt="Imagem inicial - modelo base 3D">
+      <div class="cap"><span data-pt="Imagem inicial — modelo base 3D" data-en="Starting image — 3D base model">Imagem inicial — modelo base 3D</span></div>
+    </div>
+
+    <div class="prompt">
+      <div class="plabel" data-pt="Prompt utilizado — ChatGPT" data-en="Prompt used — ChatGPT">Prompt utilizado — ChatGPT</div>
+      <blockquote>Turn this sketchup model into a city scape, using the 3d volumes as dimensions to create the buildings. Vary the buildings so that they look like various used buildings, the green patch in the middle turns into a park with many trees and maybe a lake in the middle. Add surroundings to the buildings so that they look like they are in the middle of an actual city. Add roads and small people to scale. Make the city look like a snowy winter day, so the park will have cold applications to it.</blockquote>
+    </div>
+
+    <div class="figure">
+      <img src="render made from sketchup model/first generated scene.png" alt="Primeiro render - vista aérea">
+      <div class="cap"><span data-pt="Primeiro render — vista aérea da cidade" data-en="First render — aerial city view">Primeiro render — vista aérea da cidade</span></div>
+    </div>
+
+    <div class="figure">
+      <img src="render made from sketchup model/second try of render - close up of lake.png" alt="Perspetiva aproximada do lago">
+      <div class="cap"><span data-pt="Perspetiva aproximada — lago" data-en="Closer perspective — lake">Perspetiva aproximada — lago</span></div>
+    </div>
+
+    <div class="figure">
+      <img src="render made from sketchup model/close up - gazebo was corrected.png" alt="Versão alterada - gazebo corrigido">
+      <div class="cap"><span data-pt="Versão alterada — gazebo corrigido" data-en="Altered version — gazebo corrected">Versão alterada — gazebo corrigido</span></div>
+    </div>
+
+    <div class="figure">
+      <img src="render made from sketchup model/perspective generated as a painting.png" alt="Bónus - estilo pintura">
+      <div class="cap"><span data-pt="Bónus — estilo pintura" data-en="Bonus — painting style">Bónus — estilo pintura</span></div>
+    </div>
+
+    <div class="refs">
+      <h3 data-pt="Referências" data-en="References">Referências</h3>
+      <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center">
+        <img src="render made from sketchup model/refrence.jpg" alt="Referência de pintura de inverno" style="width:140px;display:block;border:1px solid var(--line)">
+        <p style="font-size:12px;color:#5d5a52;line-height:1.7;margin:0" data-pt="Referência de pintura — imagem usada como referência para o render em estilo de pintura." data-en="Painting reference — image used as reference for the painted-style render.">Referência de pintura — imagem usada como referência para o render em estilo de pintura.</p>
+      </div>
+    </div>
+    <div class="tool"><span data-pt="feito com ChatGPT" data-en="made with ChatGPT">feito com ChatGPT</span></div>
+  </div>
+
+  <div class="closing">
+    <figure class="closing-img" style="margin:0">
+      <img src="render made from sketchup model/first generated scene.png" alt="Vista aérea final">
+    </figure>
+    <div class="closing-txt">
+      <h3 data-pt="Conclusões" data-en="Conclusions">Conclusões</h3>
+      <p data-pt="Cada exercício segue a mesma ordem: o que fizemos, o que pedimos, de onde partimos, o que obtivemos e que referências nos guiaram. As ferramentas que usámos, neste caso o Gemini e o ChatGPT, resultaram bem, criaram renders iniciais positivos e principalmente como queríamos. Foi só preciso pedir alguns ajustes, mas mesmo assim as duas ferramentas seguiram bem o que nós pedíamos e qualquer alteração que queríamos." data-en="Each exercise follows the same order: what we did, what we asked, where we started from, what we obtained and which references guided us. The tools we used, in this case Gemini and ChatGPT, both worked well, created positive initial renders and mostly as we wanted. We only needed to ask for a few adjustments, but both tools followed well what we asked and any change we wanted.">Cada exercício segue a mesma ordem: o que fizemos, o que pedimos, de onde partimos, o que obtivemos e que referências nos guiaram. As ferramentas que usámos, neste caso o Gemini e o ChatGPT, resultaram bem, criaram renders iniciais positivos e principalmente como queríamos. Foi só preciso pedir alguns ajustes, mas mesmo assim as duas ferramentas seguiram bem o que nós pedíamos e qualquer alteração que queríamos.</p>
+    </div>
+  </div>
+
+  <div class="section webo" id="webografia" style="padding-top:30px">
+    <div class="kicker" data-pt="Webografia" data-en="Webography">Webografia</div>
+    <ol style="font-size:12.5px;line-height:1.8;color:#4e4c46;margin:18px 0 0 22px;padding:0 0 0 18px;list-style:decimal">
+      <li style="padding-left:12px;margin-bottom:12px"><span data-pt="[Utilizador do Instagram]. (2021, junho). <em>Fotografia de pavimento em mosaico branco com tiras de madeira em treliça</em> [Fotografia]. Instagram. Consultado em 12 out. 2026, em " data-en="[Instagram user]. (2021, June). <em>Photograph of white lattice flooring with wood strips</em> [Photograph]. Instagram. Retrieved October 12, 2026, from ">[Utilizador do Instagram]. (2021, junho). <em>Fotografia de pavimento em mosaico branco com tiras de madeira em treliça</em> [Fotografia]. Instagram. Consultado em 12 out. 2026, em </span><a href="https://www.instagram.com/p/CQ02dMIKuEQ/" target="_blank" rel="noopener" style="color:#5C5B40">https://www.instagram.com/p/CQ02dMIKuEQ/</a></li>
+      <li style="padding-left:12px"><span data-pt="Trimble Inc. (2026). <em>SketchUp Pro</em> (Versão 2026) [Software]. Consultado em 9 out. 2026, em " data-en="Trimble Inc. (2026). <em>SketchUp Pro</em> (Version 2026) [Computer software]. Retrieved October 9, 2026, from ">Trimble Inc. (2026). <em>SketchUp Pro</em> (Versão 2026) [Software]. Consultado em 9 out. 2026, em </span><a href="https://www.sketchup.com/" target="_blank" rel="noopener" style="color:#5C5B40">https://www.sketchup.com/</a></li>
+      <li style="padding-left:12px;margin-top:12px"><span data-pt="Ables, S. (2022, 14 de agosto). <em>A Visit to Le Musée de l’Orangerie, The Cycle of the Water Lilies (Nymphéas) by Claude Monet with TSLL</em>. The Simply Luxurious Life. Consultado em 12 out. 2026, em " data-en="Ables, S. (2022, August 14). <em>A Visit to Le Musée de l’Orangerie, The Cycle of the Water Lilies (Nymphéas) by Claude Monet with TSLL</em>. The Simply Luxurious Life. Retrieved October 12, 2026, from ">Ables, S. (2022, 14 de agosto). <em>A Visit to Le Musée de l’Orangerie, The Cycle of the Water Lilies (Nymphéas) by Claude Monet with TSLL</em>. The Simply Luxurious Life. Consultado em 12 out. 2026, em </span><a href="https://thesimplyluxuriouslife.com/monetlorangeriewaterlilies2022/" target="_blank" rel="noopener" style="color:#5C5B40">https://thesimplyluxuriouslife.com/monetlorangeriewaterlilies2022/</a></li>
+      <li style="padding-left:12px;margin-top:12px"><span data-pt="Monet, C. (1899). <em>Bridge over a Pond of Water Lilies</em> [Óleo sobre tela]. The Metropolitan Museum of Art. Consultado em 12 out. 2026, em " data-en="Monet, C. (1899). <em>Bridge over a Pond of Water Lilies</em> [Oil on canvas]. The Metropolitan Museum of Art. Retrieved October 12, 2026, from ">Monet, C. (1899). <em>Bridge over a Pond of Water Lilies</em> [Óleo sobre tela]. The Metropolitan Museum of Art. Consultado em 12 out. 2026, em </span><a href="https://www.metmuseum.org/art/collection/search/437127" target="_blank" rel="noopener" style="color:#5C5B40">https://www.metmuseum.org/art/collection/search/437127</a></li>
+      <li style="padding-left:12px;margin-top:12px"><span data-pt="Mønsted, P. M. (1929). <em>Winter in Herstedvester</em> [Óleo sobre tela]. Leighton Fine Art. Consultado em 14 out. 2026, em " data-en="Mønsted, P. M. (1929). <em>Winter in Herstedvester</em> [Oil on canvas]. Leighton Fine Art. Retrieved October 14, 2026, from ">Mønsted, P. M. (1929). <em>Winter in Herstedvester</em> [Óleo sobre tela]. Leighton Fine Art. Consultado em 14 out. 2026, em </span><a href="https://www.leightonfineart.co.uk/artwork/winter-in-herstedvester/" target="_blank" rel="noopener" style="color:#5C5B40">https://www.leightonfineart.co.uk/artwork/winter-in-herstedvester/</a></li>
+    </ol>
+    <p style="font-size:11.5px;line-height:1.7;color:#8a867a;font-style:italic;margin-top:14px" data-pt="Nota: o ChatGPT e o Gemini foram usados como ferramentas de trabalho." data-en="Note: ChatGPT and Gemini were used as working tools.">Nota: o ChatGPT e o Gemini foram usados como ferramentas de trabalho.</p>
+  </div>
+
+  <footer>
+    <span data-pt="IA Optativa 2026" data-en="IA Optativa 2026">IA Optativa 2026</span>
+    <div class="names">Ana Silva | Maria Matias | Sara Leal</div>
+  </footer>
+</div>
+<script>
+function setL(l){
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-pt]').forEach(function(el){
+    var v = el.getAttribute(l==='pt' ? 'data-pt' : 'data-en');
+    if(v!==null) el.innerHTML = v;
+  });
+  document.getElementById('bPT').classList.toggle('on', l==='pt');
+  document.getElementById('bEN').classList.toggle('on', l==='en');
+}
+</script>
+</body>
+</html>
